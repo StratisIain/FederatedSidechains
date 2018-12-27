@@ -26,7 +26,7 @@ We then need to define the repository that you will clone.
 
 Now we can clone the repository using Git. 
 
-    Start-Process "git.exe" -ArgumentList "clone --recurse-submodules $RepositoryURL $CloneDirectory"
+    Start-Process "git.exe" -ArgumentList "clone $RepositoryURL $CloneDirectory"
 
 
 
@@ -53,6 +53,8 @@ The below PowerShell script-block with generate your unique mnemonic words.
 
     $Mnemonic = Invoke-WebRequest -Uri "http://localhost:38225/api/Wallet/mnemonic?language=english&wordCount=12" | Select-Object -ExpandProperty Content
     $Mnemonic = $Mnemonic -replace '["]',''
+    
+**Important: Please be sure to keep note of your mnemonic words
 
 Now we have a set of unique mnemonic words, we can create a wallet. 
 
@@ -61,8 +63,6 @@ Now we have a set of unique mnemonic words, we can create a wallet.
     $WalletPassword = Read-Host -Prompt "Please enter a Password to secure the wallet"
     $Params = @{"mnemonic" = $Mnemonic; "password" = $WalletPassword; "passphrase" = $WalletPassword; "name" = "$WalletName"}
     Invoke-WebRequest -Uri http://localhost:38225/api/Wallet/create -Method post -Body ($Params|ConvertTo-Json) -ContentType "application/json"
-    $Params = @{"name" = "$WalletName"; "password" = $WalletPassword}
-    Invoke-WebRequest -Uri http://localhost:38225/api/Wallet/load -Method post -Body ($Params|ConvertTo-Json) -ContentType "application/json"
 
 We now have now created a wallet. 
 
