@@ -56,6 +56,7 @@ The below PowerShell script-block with generate your unique mnemonic words.
     
 **Important: Please be sure to keep note of your mnemonic words
 
+
 Now we have a set of unique mnemonic words, we can create a wallet. 
 
     $WalletName = Read-Host -Prompt "What do you want to call the wallet?"
