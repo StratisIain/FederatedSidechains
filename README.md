@@ -54,7 +54,7 @@ The below PowerShell script-block with generate your unique mnemonic words.
     $Mnemonic = Invoke-WebRequest -Uri "http://localhost:38225/api/Wallet/mnemonic?language=english&wordCount=12" | Select-Object -ExpandProperty Content
     $Mnemonic = $Mnemonic -replace '["]',''
     
-**Important: Please be sure to keep note of your mnemonic words
+**Important: Please be sure to keep note of your mnemonic words**
 
 
 Now we have a set of unique mnemonic words, we can create a wallet. 
